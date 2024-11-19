@@ -19,6 +19,7 @@ def run(context):
         realInputNumber = unitsMgr.evaluateExpression(newInputNumber[0],unitsMgr.defaultLengthUnits)
         
         realValueInput = adsk.core.ValueInput.createByReal(realInputNumber)
+        
         design.userParameters.add(newInputName[0],realValueInput,unitsMgr.defaultLengthUnits,'')
 
         #ui.messageBox('Hello script')
