@@ -10,19 +10,19 @@ def run(context):
         ui  = app.userInterface
         design = adsk.fusion.Design.cast(app.activeProduct)
 
-        defaultInputNumber = "5 mm"
-        defaultInputName = "Diameter"
+        defaultInputNumber = "5 deg"
+        defaultInputName = "Angle"
         newInputName = ui.inputBox("Enter a new user parameter name: ", "New User Parameter", defaultInputName)
         newInputNumber = ui.inputBox("Enter a User Parameter Value: ", "New User Parameter",defaultInputNumber)
 
         unitsMgr = design.unitsManager
-        realInputNumber = unitsMgr.evaluateExpression(newInputNumber[0],unitsMgr.defaultLengthUnits)
+        realInputNumber = unitsMgr.evaluateExpression(newInputNumber[0],'deg')
         
         realValueInput = adsk.core.ValueInput.createByReal(realInputNumber)
         
-        design.userParameters.add(newInputName[0],realValueInput,unitsMgr.defaultLengthUnits,'')
+        design.userParameters.add(newInputName[0],realValueInput,'deg','')
 
-        #ui.messageBox('Hello script')
+        ui.messageBox('Success')
 
     except:
         if ui:
